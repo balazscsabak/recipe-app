@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  mongodb_recipe_app:
+    container_name: mongodb_recipe_app
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: r00t
+      MONGO_INITDB_DATABASE: recipe-app
+    ports:
+      - 27017:27017
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - recipe_app_data:/data/db
+
+volumes:
+  recipe_app_data:
